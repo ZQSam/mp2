@@ -7,26 +7,15 @@ type Props = { movie: Movie; onPrepareNavigate?: () => void };
 const MovieCard: React.FC<Props> = ({ movie, onPrepareNavigate }) => {
   const img = posterUrl(movie.poster_path, "w342");
   const title = movie.title || movie.name || "Untitled";
+
   return (
     <Link
       to={`/movie/${movie.id}`}
       onClick={() => onPrepareNavigate && onPrepareNavigate()}
-      className="card"
-      style={{
-        display: "block",
-        textDecoration: "none",
-        color: "inherit",
-        borderRadius: 12,
-        overflow: "hidden",
-        border: "1px solid #2223",
-      }}
+      className="movie-card"
     >
       {img ? (
-        <img
-          src={img}
-          alt={`${title} poster`}
-          style={{ width: "100%", display: "block" }}
-        />
+        <img src={img} alt={`${title} poster`} />
       ) : (
         <div
           style={{

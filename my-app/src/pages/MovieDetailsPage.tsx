@@ -45,7 +45,7 @@ const MovieDetailsPage: React.FC = () => {
     : undefined;
 
   return (
-    <div>
+    <div className="page">
       {backdrop && (
         <div
           style={{
@@ -81,17 +81,7 @@ const MovieDetailsPage: React.FC = () => {
             }}
           />
         )}
-        <div
-          style={{
-            background: "#fff",
-            padding: 12,
-            borderRadius: 8,
-            flex: 1,
-            boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-            position: "relative",
-            zIndex: 1,
-          }}
-        >
+        <div className="details-card">
           <h2 style={{ marginTop: 0 }}>{title}</h2>
           <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
             {/* prev/next navigation */}
@@ -109,26 +99,14 @@ const MovieDetailsPage: React.FC = () => {
                   <button
                     onClick={() => prevId && navigate(`/movie/${prevId}`)}
                     disabled={!prevId}
-                    style={{
-                      padding: "8px 12px",
-                      borderRadius: 6,
-                      border: "1px solid #ccc",
-                      background: !prevId ? "#f5f5f5" : "#fff",
-                      cursor: prevId ? "pointer" : "not-allowed",
-                    }}
+                    className="nav-btn"
                   >
                     ← Previous
                   </button>
                   <button
                     onClick={() => nextId && navigate(`/movie/${nextId}`)}
                     disabled={!nextId}
-                    style={{
-                      padding: "8px 12px",
-                      borderRadius: 6,
-                      border: "1px solid #ccc",
-                      background: !nextId ? "#f5f5f5" : "#fff",
-                      cursor: nextId ? "pointer" : "not-allowed",
-                    }}
+                    className="nav-btn"
                   >
                     Next →
                   </button>

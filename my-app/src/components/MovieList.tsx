@@ -16,7 +16,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
     } catch {}
   };
   return (
-    <div style={{ display: "grid", gap: 12 }}>
+    <div className="movie-list">
       {movies.map((m) => {
         const title = m.title || m.name || "Untitled";
         return (
@@ -24,27 +24,13 @@ const MovieList: React.FC<Props> = ({ movies }) => {
             key={m.id}
             to={`/movie/${m.id}`}
             onClick={prepare}
-            style={{
-              display: "flex",
-              gap: 12,
-              textDecoration: "none",
-              color: "inherit",
-              alignItems: "center",
-              padding: 12,
-              border: "1px solid #2223",
-              borderRadius: 8,
-            }}
+            className="movie-list-item"
           >
             {m.poster_path ? (
               <img
                 src={posterUrl(m.poster_path, "w185")}
                 alt={`${title} poster`}
-                style={{
-                  width: 80,
-                  height: 120,
-                  objectFit: "cover",
-                  borderRadius: 6,
-                }}
+                className=""
               />
             ) : (
               <div
@@ -60,8 +46,8 @@ const MovieList: React.FC<Props> = ({ movies }) => {
                 No Poster
               </div>
             )}
-            <div style={{ flex: 1 }}>
-              <div style={{ fontWeight: 700 }}>{title}</div>
+            <div className="movie-meta">
+              <h3>{title}</h3>
               <div style={{ color: "#555", fontSize: 14 }}>
                 {m.release_date || "Unknown release"}
               </div>

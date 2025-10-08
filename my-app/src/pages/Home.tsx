@@ -60,39 +60,42 @@ const Home: React.FC = () => {
   }, [movies, q, sortKey, sortDir]);
 
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: 16 }}>
-      <h1 style={{ marginBottom: 8 }}>🎬 TMDB Movie Explorer — List View</h1>
-      <SearchBar onSearch={handleSearch} initial={q} />
+    <div className="page">
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: 16 }}>
+        <h1 style={{ marginBottom: 8 }}>🎬 TMDB Movie Explorer — List View</h1>
+        <SearchBar onSearch={handleSearch} initial={q} />
 
-      <div
-        style={{
-          display: "flex",
-          gap: 12,
-          alignItems: "center",
-          marginBottom: 12,
-        }}
-      >
-        <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          Sort by:
-          <select
-            value={sortKey}
-            onChange={(e) => setSortKey(e.target.value as SortKey)}
-          >
-            <option value="title">Title</option>
-            <option value="release_date">Release Date</option>
-          </select>
-        </label>
-        <button
-          onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
+        <div
+          style={{
+            display: "flex",
+            gap: 12,
+            alignItems: "center",
+            marginBottom: 12,
+          }}
+          className="controls"
         >
-          {sortDir === "asc" ? "Ascending" : "Descending"}
-        </button>
+          <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            Sort by:
+            <select
+              value={sortKey}
+              onChange={(e) => setSortKey(e.target.value as SortKey)}
+            >
+              <option value="title">Title</option>
+              <option value="release_date">Release Date</option>
+            </select>
+          </label>
+          <button
+            onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
+          >
+            {sortDir === "asc" ? "Ascending" : "Descending"}
+          </button>
+        </div>
+
+        {status === "loading" && <p>Loading…</p>}
+        {status === "error" && <p>Something went wrong. Try again.</p>}
+
+        <MovieList movies={filtered} />
       </div>
-
-      {status === "loading" && <p>Loading…</p>}
-      {status === "error" && <p>Something went wrong. Try again.</p>}
-
-      <MovieList movies={filtered} />
     </div>
   );
 };

@@ -61,89 +61,86 @@ const Gallery: React.FC = () => {
   }, [movies, hasPoster, recentOnly, hasOverview, minPopularity, minRating]);
 
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: 16 }}>
-      <h1 style={{ marginBottom: 8 }}>Gallery View</h1>
+    <div className="page">
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: 16 }}>
+        <h1 style={{ marginBottom: 8 }}>Gallery View</h1>
 
-      <div
-        style={{
-          display: "flex",
-          gap: 12,
-          alignItems: "center",
-          marginBottom: 12,
-        }}
-      >
-        <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <input
-            type="checkbox"
-            checked={hasPoster}
-            onChange={(e) => setHasPoster(e.target.checked)}
-          />{" "}
-          Has poster
-        </label>
-        <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <input
-            type="checkbox"
-            checked={recentOnly}
-            onChange={(e) => setRecentOnly(e.target.checked)}
-          />{" "}
-          Released 2020+
-        </label>
-        <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <input
-            type="checkbox"
-            checked={hasOverview}
-            onChange={(e) => setHasOverview(e.target.checked)}
-          />{" "}
-          Has overview
-        </label>
-        <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          Min popularity:
-          <input
-            type="number"
-            value={minPopularity}
-            onChange={(e) =>
-              setMinPopularity(
-                e.target.value === "" ? "" : Number(e.target.value)
-              )
-            }
-            style={{ width: 100 }}
-          />
-        </label>
-        <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          Min rating:
-          <input
-            type="number"
-            step="0.1"
-            min="0"
-            max="10"
-            value={minRating}
-            onChange={(e) =>
-              setMinRating(e.target.value === "" ? "" : Number(e.target.value))
-            }
-            style={{ width: 100 }}
-          />
-        </label>
-        <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          Pages to load:
-          <input
-            type="number"
-            min={1}
-            max={5}
-            value={pagesToLoad}
-            onChange={(e) =>
-              setPagesToLoad(Math.max(1, Math.min(5, Number(e.target.value))))
-            }
-            style={{ width: 80 }}
-          />
-        </label>
-        <div style={{ marginLeft: "auto", color: "#666" }}>
-          Showing {filtered.length} of {movies.length}
+        <div className="controls">
+          <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input
+              type="checkbox"
+              checked={hasPoster}
+              onChange={(e) => setHasPoster(e.target.checked)}
+            />{" "}
+            Has poster
+          </label>
+          <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input
+              type="checkbox"
+              checked={recentOnly}
+              onChange={(e) => setRecentOnly(e.target.checked)}
+            />{" "}
+            Released 2020+
+          </label>
+          <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input
+              type="checkbox"
+              checked={hasOverview}
+              onChange={(e) => setHasOverview(e.target.checked)}
+            />{" "}
+            Has overview
+          </label>
+          <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            Min popularity:
+            <input
+              type="number"
+              value={minPopularity}
+              onChange={(e) =>
+                setMinPopularity(
+                  e.target.value === "" ? "" : Number(e.target.value)
+                )
+              }
+              style={{ width: 100 }}
+            />
+          </label>
+          <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            Min rating:
+            <input
+              type="number"
+              step="0.1"
+              min="0"
+              max="10"
+              value={minRating}
+              onChange={(e) =>
+                setMinRating(
+                  e.target.value === "" ? "" : Number(e.target.value)
+                )
+              }
+              style={{ width: 100 }}
+            />
+          </label>
+          <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            Pages to load:
+            <input
+              type="number"
+              min={1}
+              max={5}
+              value={pagesToLoad}
+              onChange={(e) =>
+                setPagesToLoad(Math.max(1, Math.min(5, Number(e.target.value))))
+              }
+              style={{ width: 80 }}
+            />
+          </label>
+          <div style={{ marginLeft: "auto", color: "#666" }}>
+            Showing {filtered.length} of {movies.length}
+          </div>
         </div>
-      </div>
 
-      {status === "loading" && <p>Loading…</p>}
-      {status === "error" && <p>Something went wrong. Try again.</p>}
-      <MovieGrid movies={filtered} />
+        {status === "loading" && <p>Loading…</p>}
+        {status === "error" && <p>Something went wrong. Try again.</p>}
+        <MovieGrid movies={filtered} />
+      </div>
     </div>
   );
 };

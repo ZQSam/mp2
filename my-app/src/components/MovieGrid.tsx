@@ -14,14 +14,7 @@ const MovieGrid: React.FC<Props> = ({ movies }) => {
     } catch {}
   };
   return (
-    <div
-      className="grid"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-        gap: 16,
-      }}
-    >
+    <div className="movie-grid">
       {movies.map((m) => (
         <MovieCard key={m.id} movie={m} onPrepareNavigate={prepare} />
       ))}
