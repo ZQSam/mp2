@@ -7,6 +7,14 @@ type Props = {
 };
 
 const MovieList: React.FC<Props> = ({ movies }) => {
+  const prepare = () => {
+    try {
+      sessionStorage.setItem(
+        "last_movies",
+        JSON.stringify(movies.map((m) => m.id))
+      );
+    } catch {}
+  };
   return (
     <div style={{ display: "grid", gap: 12 }}>
       {movies.map((m) => {
@@ -15,6 +23,7 @@ const MovieList: React.FC<Props> = ({ movies }) => {
           <Link
             key={m.id}
             to={`/movie/${m.id}`}
+            onClick={prepare}
             style={{
               display: "flex",
               gap: 12,

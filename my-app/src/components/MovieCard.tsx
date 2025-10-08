@@ -2,14 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Movie, posterUrl } from "../api/tmdb";
 
-type Props = { movie: Movie };
+type Props = { movie: Movie; onPrepareNavigate?: () => void };
 
-const MovieCard: React.FC<Props> = ({ movie }) => {
+const MovieCard: React.FC<Props> = ({ movie, onPrepareNavigate }) => {
   const img = posterUrl(movie.poster_path, "w342");
   const title = movie.title || movie.name || "Untitled";
   return (
     <Link
       to={`/movie/${movie.id}`}
+      onClick={() => onPrepareNavigate && onPrepareNavigate()}
       className="card"
       style={{
         display: "block",
@@ -21,9 +22,20 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
       }}
     >
       {img ? (
-        <img src={img} alt={`${title} poster`} style={{ width: "100%", display: "block" }} />
+        <img
+          src={img}
+          alt={`${title} poster`}
+          style={{ width: "100%", display: "block" }}
+        />
       ) : (
-        <div style={{ height: 200, display: "grid", placeItems: "center", background: "#eee" }}>
+        <div
+          style={{
+            height: 200,
+            display: "grid",
+            placeItems: "center",
+            background: "#eee",
+          }}
+        >
           No Poster
         </div>
       )}
