@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_TMDB_KEY!;
 const BASE_URL = "https://api.themoviedb.org/3";
-export const IMAGE_BASE = "https://image.tmdb.org/t/p/"; // use sizes like w185, w342, w500, original
+export const IMAGE_BASE = "https://image.tmdb.org/t/p/"; 
 
 export type Movie = {
   id: number;
@@ -11,6 +11,8 @@ export type Movie = {
   poster_path: string | null;
   release_date?: string;
   overview?: string;
+  popularity?: number;
+  vote_average?: number;
 };
 
 export type MovieDetails = Movie & {
